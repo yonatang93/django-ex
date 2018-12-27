@@ -1,5 +1,6 @@
 import os
 import time
+import random
 import socket
 from django.shortcuts import render
 from django.conf import settings
@@ -8,8 +9,10 @@ from django.http import HttpResponse
 from . import database
 from .models import PageView
 
-MONGO_VMS_IP = 	"172.16.2.121"
-MONGO_PORT = 27017
+APP_TO_MONGO_VMS_IP = {
+	"billing": ["172.16.2.121"]
+	"accounting": ["172.16.3.121", "172.16.3.122"]
+}
 
 def nc(ip, port):
 	soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -21,7 +24,7 @@ def nc(ip, port):
 def index(request):
     hostname = os.getenv('HOSTNAME', 'unknown')
     PageView.objects.create(hostname=hostname)
-    nc(MONGO_VMS_IP, MONGO_PORT)
+    nc(random.choice(APP_TO_MONGO_VMS_IP[os.getenv(OPENSHIFT_BUILD_NAMESPACE)]), MONGO_PORT)
     return render(request, 'welcome/index.html', {
         'hostname': hostname,
         'database': database.info(),
