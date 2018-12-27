@@ -1,4 +1,6 @@
 import os
+import time
+import socket
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
@@ -6,12 +8,20 @@ from django.http import HttpResponse
 from . import database
 from .models import PageView
 
+MONGO_VMS_IP = 	"172.16.2.121"
+MONGO_PORT = 27017
+
+def nc(ip, port):
+	soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	soc.connect((ip, port))
+	time.sleep(3)
+
 # Create your views here.
 
 def index(request):
     hostname = os.getenv('HOSTNAME', 'unknown')
     PageView.objects.create(hostname=hostname)
-
+    nc(MONGO_VMS_IP, MONGO_PORT)
     return render(request, 'welcome/index.html', {
         'hostname': hostname,
         'database': database.info(),
