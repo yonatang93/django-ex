@@ -24,7 +24,7 @@ def nc(ip, port):
 def index(request):
     hostname = os.getenv('HOSTNAME', 'unknown')
     PageView.objects.create(hostname=hostname)
-    nc(random.choice(APP_TO_MONGO_VMS_IP[os.getenv(OPENSHIFT_BUILD_NAMESPACE)]), MONGO_PORT)
+    nc(random.choice(APP_TO_MONGO_VMS_IP[os.getenv("OPENSHIFT_BUILD_NAMESPACE")]), MONGO_PORT)
     return render(request, 'welcome/index.html', {
         'hostname': hostname,
         'database': database.info(),
