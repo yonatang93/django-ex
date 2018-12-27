@@ -13,6 +13,7 @@ APP_TO_MONGO_VMS_IP = {
 	"billing": ["172.16.2.121"],
 	"accounting": ["172.16.3.121", "172.16.3.122"]
 }
+MONGO_PORT= 27017
 
 def nc(ip, port):
 	soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
