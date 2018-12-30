@@ -10,6 +10,8 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', index),
+    url(r'^Billing$', index),
+    url(r'Accounting^$', index),
     url(r'^health$', health),
     url(r'^admin/', include(admin.site.urls)),
 ]
