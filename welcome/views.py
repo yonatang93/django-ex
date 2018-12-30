@@ -15,7 +15,7 @@ APP_TO_MONGO_VMS_IP = {
 }
 MONGO_PORT = 27017
 
-LDAP_IP = 172.16.1.1
+LDAP_IP = "172.16.1.1"
 LDAP_PORT = 389
 
 def nc(ip, port):
