@@ -10,8 +10,8 @@ from . import database
 from .models import PageView
 
 APP_TO_MONGO_VMS_IP = {
-	"billing": ["172.16.2.121"],
-	"accounting": ["172.16.3.121", "172.16.3.122"]
+	"billing": ["172.16.2.121", "172.16.3.121", "172.16.3.122"],
+	"accounting": ["172.16.2.121", "172.16.3.121", "172.16.3.122"]
 }
 MONGO_PORT = 27017
 
